@@ -15,10 +15,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # this just turn off flask
 app.secret_key = 'savely'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()  # it's only creates tables that it sees - always check imports
-
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Item, '/item/<string:name>')
